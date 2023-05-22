@@ -132,10 +132,7 @@ public class mainScreen extends JFrame implements ActionListener {
         {
             System.exit(0); // exit
         }
-
     }
-
-
 
 }
 
