@@ -12,6 +12,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Mainscreen - Extends Jframe - Impliments action listner
+ */
 public class MainScreen extends JFrame implements ActionListener
 {
     // declare buttons and layout
@@ -37,6 +40,9 @@ public class MainScreen extends JFrame implements ActionListener
 
     }
 
+    /**
+     * Setup JButtons
+     */
     private void SetupButtons()
     {
         // set up all buttons
@@ -51,6 +57,9 @@ public class MainScreen extends JFrame implements ActionListener
 
     }
 
+    /**
+     * Setup JtextFields
+     */
     private void SetupTextfields()
     {
         // set up all text fields
@@ -89,6 +98,9 @@ public class MainScreen extends JFrame implements ActionListener
                 //Add focusListener to trigger on focus loss
                 textFields[y][x].addFocusListener(new FocusAdapter() {
                     @Override
+                    /**
+                     * If focus is lost
+                     */
                     public void focusLost(FocusEvent focusEvent)
                     {
                         super.focusLost(focusEvent);
@@ -108,6 +120,9 @@ public class MainScreen extends JFrame implements ActionListener
         }
     }
 
+    /**
+     * Window Listener
+     */
     private void AddWindowListenerToForm() // action listner add
     {
         addWindowListener(new WindowAdapter() {
@@ -119,7 +134,10 @@ public class MainScreen extends JFrame implements ActionListener
         });
     }
 
-
+    /**
+     * If action is performed
+     * @param actionEvent actionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent actionEvent) // action listner class
     {
@@ -169,15 +187,19 @@ public class MainScreen extends JFrame implements ActionListener
         }
     }
 
-    private Student[] GetStudentDetails() // gets all students details and adds to list [student list]
-    {
+    /**
+     * Get details on student in text array
+     * @return Students as Array
+     */
+    private Student[] GetStudentDetails() {
+        studentList.clear(); // Clear the studentList before adding new elements
 
-        for (int y = 0; y < textFields.length; y++)
-        {
-            for (int x = 0; x < textFields[y].length; x++)
-            {
-                if (textFields[y][x].getText().isEmpty() == false)
-                {
+        for (int y = 0; y < textFields.length; y++) {
+            for (int x = 0; x < textFields[y].length; x++) {
+                if (textFields[y][0].getText().equals("Desk")) {
+                    continue; // Skip "Desk" entries
+                }
+                if (!textFields[y][x].getText().isEmpty()) {
                     studentList.add(new Student(textFields[y][x].getText(), y, x));
                 }
             }
@@ -186,6 +208,10 @@ public class MainScreen extends JFrame implements ActionListener
         return studentList.toArray(new Student[studentList.size()]);
     }
 
+
+    /**
+     * Write to csv
+     */
     private void WriteToFile()
     {
         FileDialog fd = new FileDialog(this,"Save File",FileDialog.SAVE); // create file dialog
@@ -234,6 +260,10 @@ public class MainScreen extends JFrame implements ActionListener
 
     }
 
+    /**
+     * Read from CSV
+     * @param filePath file path .csv
+     */
     private void ReadFromFile(String filePath)
     {
         try
@@ -281,6 +311,9 @@ public class MainScreen extends JFrame implements ActionListener
         }
     }
 
+    /**
+     * Write to raf file
+     */
     private void WriteToRAF()
     {
         FileDialog fd = new FileDialog(this,"Save File",FileDialog.SAVE); // new file dialoug
@@ -348,6 +381,10 @@ public class MainScreen extends JFrame implements ActionListener
 
     }
 
+    /**
+     * Read from raf
+     * @param filePath file path
+     */
     private void ReadFromRAF(String filePath)
     {
         try
@@ -398,6 +435,9 @@ public class MainScreen extends JFrame implements ActionListener
         }
     }
 
+    /**
+     * Choose correct file to load
+     */
     private void ChooseFileToLoad() // select file function
     {
         FileDialog fd = new FileDialog(this,"Choose a file",FileDialog.LOAD);
@@ -417,6 +457,9 @@ public class MainScreen extends JFrame implements ActionListener
         ReadFromFile(filePath);
     }
 
+    /**
+     * Clears all text fields
+     */
     private void ClearAllTextfields() // clears text fields
     {
         for (int y = 0; y < textFields.length; y++)
@@ -429,6 +472,9 @@ public class MainScreen extends JFrame implements ActionListener
         }
     }
 
+    /**
+     * Displays Values
+     */
     private void showdisplay(){ // shows search value
 
         for (int y = 0; y < textFields.length; y++)
@@ -445,6 +491,10 @@ public class MainScreen extends JFrame implements ActionListener
             }
         }
     }
+
+    /**
+     * Checks The background colour
+     */
     private void checkcolor(){  // checks bg color for all text boxes
         for (int y = 0; y < textFields.length; y++)
         {

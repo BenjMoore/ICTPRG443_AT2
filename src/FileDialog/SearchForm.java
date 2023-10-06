@@ -15,10 +15,25 @@ public class SearchForm extends JFrame
 
     public SearchForm(Student[] array, String search)
     {
-        setSize(250,array.length * 20 + 100);
+        int i = 0;
+        int g = 0;
+        while(array.length != g)
+        {
+            if(studentArray[i].getStudentName() == "Desk")
+            {
+                i--;
+                g++;
+            }
+            i++;
+            g++;
+        }
+
+        int arraylen = i;
+
+        setSize(250,array.length + 100);
         setLocation(300,50);
         setLayout(myLayout);
-        textfields = new JTextField[array.length][3];
+        textfields = new JTextField[arraylen][3];
         studentArray = array;
         searchName = search;
         AddWindowListenerToForm();
@@ -46,32 +61,30 @@ public class SearchForm extends JFrame
 
     private void SetupTextFields()
     {
-        for (int y = 0; y < textfields.length ; y++)
-        {
-            for (int x = 0; x < textfields[y].length; x++)
-            {
-                int xPos = x * 60 + 25;
-                int yPos = y * 20 + 25;
-                textfields[y][x] = UIComponentLibrary.CreateAJTextField(5,xPos,yPos,this,myLayout);
+
+
+        for (int y = 0; y < textfields.length ; y++) {
+                for (int x = 0; x < textfields[y].length; x++) {
+
+                        int xPos = x * 60 + 25;
+                        int yPos = y * 20 + 25;
+                        textfields[y][x] = UIComponentLibrary.CreateAJTextField(5, xPos, yPos, this, myLayout);
+                    }
             }
-        }
     }
 
+
     private void DisplayStudents() {
+
         Arrays.sort(studentArray);
         for (int i = 0; i < studentArray.length; i++) {
-            textfields[i][0].setText(studentArray[i].getStudentName());
-            textfields[i][1].setText(Integer.toString(studentArray[i].getyPos()));
-            textfields[i][2].setText(Integer.toString(studentArray[i].getxPos()));
-            if (textfields[i][0].getText().compareToIgnoreCase("Desk") == 0) {
+            if(studentArray[i].getStudentName() == "Desk"){
 
-                textfields[i][0].setText(""); // empty text boxes
-                textfields[i][1].setText("");
-                textfields[i][2].setText("");
-                textfields[i][0].hide(); // hide text boxes
-                textfields[i][1].hide();
-                textfields[i][2].hide();
-
+            }
+            else {
+                textfields[i][0].setText(studentArray[i].getStudentName());
+                textfields[i][1].setText(Integer.toString(studentArray[i].getyPos()));
+                textfields[i][2].setText(Integer.toString(studentArray[i].getxPos()));
             }
         }
 
