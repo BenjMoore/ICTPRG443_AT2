@@ -481,10 +481,10 @@ public class MainScreen extends JFrame implements ActionListener
         {
             for (int x = 0; x < textFields[y].length; x++)
             {
-                if(textFields[y][x].getText().isEmpty() == false){
-                    if (textFields[y][x].getText().equalsIgnoreCase(txtSearch.getText()))
+                if(textFields[x][y].getText().isEmpty() == false){
+                    if (textFields[x][y].getText().equalsIgnoreCase(txtSearch.getText()))
                     {
-                   textFields[y][x].setBackground(Color.orange);
+                   textFields[x][y].setBackground(Color.orange);
                 }
 
                 }

@@ -16,7 +16,7 @@ public class SortingForm extends JFrame
 
     public SortingForm(Student[] array, String search)
     {
-        setSize(250,array.length * 20 + 100);
+        setSize(250,array.length * 15);
         setLocation(300,50);
         setLayout(myLayout);
         textfields = new JTextField[array.length][3];
