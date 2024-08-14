@@ -3,13 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.LinkedList;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 /**
  * MainScreen class extends JFrame and implements ActionListener.
@@ -27,7 +22,7 @@ public class MainScreen extends JFrame implements ActionListener {
     JTextField txtSearch;
     JTextField txtTeacher, txtClass, txtRoom, txtDate;
     // Declare an array to hold Student objects
-    Student[] studentArray;
+    //Student[] studentArray;
     // Declare a LinkedList to hold Student objects
     LinkedList<Student> studentList = new LinkedList<>();
 
