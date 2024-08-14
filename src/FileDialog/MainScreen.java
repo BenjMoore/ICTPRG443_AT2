@@ -491,7 +491,7 @@ public class MainScreen extends JFrame implements ActionListener
     }
 
     /**
-     * Checks The background colour
+     * Checks The background colour, reverts to white if orange
      */
     private void checkcolor(){  // checks bg color for all text boxes
         for (int y = 0; y < textFields.length; y++)

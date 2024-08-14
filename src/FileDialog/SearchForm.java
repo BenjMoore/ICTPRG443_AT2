@@ -42,9 +42,12 @@ public class SearchForm extends JFrame
     private void SetupTextFields() {
         int validStudentCount = 0; // Track the number of valid students
 
-        for (int y = 0; y < studentArray.length; y++) {
-            if (!studentArray[y].getStudentName().equalsIgnoreCase("desk")) {
-                for (int x = 0; x < textfields[y].length; x++) {
+        for (int y = 0; y < studentArray.length; y++)
+        {
+            if (!studentArray[y].getStudentName().equalsIgnoreCase("desk"))
+            {
+                for (int x = 0; x < textfields[y].length; x++)
+                {
                     int xPos = x * 60 + 25;
                     int yPos = validStudentCount * 20 + 25;
                     textfields[validStudentCount][x] = UIComponentLibrary.CreateAJTextField(5, xPos, yPos, this, myLayout);
@@ -58,8 +61,10 @@ public class SearchForm extends JFrame
         Arrays.sort(studentArray);
         int validStudentCount = 0; // Track the number of valid students
 
-        for (int i = 0; i < studentArray.length; i++) {
-            if (!studentArray[i].getStudentName().equalsIgnoreCase("desk")) {
+        for (int i = 0; i < studentArray.length; i++)
+        {
+            if (!studentArray[i].getStudentName().equalsIgnoreCase("desk"))
+            {
                 textfields[validStudentCount][0].setText(studentArray[i].getStudentName());
                 textfields[validStudentCount][1].setText(Integer.toString(studentArray[i].getyPos()));
                 textfields[validStudentCount][2].setText(Integer.toString(studentArray[i].getxPos()));
@@ -70,14 +75,21 @@ public class SearchForm extends JFrame
 
 
     private void ShowSearchedStudent() {
-        for (int y = 0; y < textfields.length; y++) {
-            if (textfields[y] != null) { // Check if the row is initialized
-                for (int x = 0; x < textfields[y].length; x++) {
-                    if (textfields[y][x] != null && !textfields[y][x].getText().isEmpty()) {
-                        if (textfields[y][x].getText().equals(searchName)) {
+        for (int y = 0; y < textfields.length; y++)
+        {
+            if (textfields[y] != null)
+            { // Check if the row is initialized
+                for (int x = 0; x < textfields[y].length; x++)
+                {
+                    if (textfields[y][x] != null && !textfields[y][x].getText().isEmpty())
+                    {
+                        if
+                        (textfields[y][x].getText().equals(searchName))
+                        {
                             textfields[y][x].setBackground(Color.orange);
-
-                        } else {
+                        }
+                        else
+                        {
                             textfields[y][x].setBackground(null);
                         }
                     }
