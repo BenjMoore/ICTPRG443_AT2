@@ -26,11 +26,6 @@ public class SortingForm extends JFrame
         SetupTextFields();
         DisplayStudents();
         //ShowSearchedStudent();
-
-
-
-
-
         setVisible(true);
     }
 

@@ -20,7 +20,7 @@ public class MainScreen extends JFrame implements ActionListener
     // declare buttons and layout
     SpringLayout myLayout = new SpringLayout();
     JButton btnExit, btnSave, btnOpen, btnBinary,btnClear,btnSort, btnRAF;
-    JTextField[][] textFields = new JTextField[15][9];
+    JTextField[][] textFields = new JTextField[19][10];
     JTextField txtSearch;
     JTextField txtTeacher,txtClass,txtRoom,txtDate;
     Student[] studentArray;
@@ -29,7 +29,7 @@ public class MainScreen extends JFrame implements ActionListener
     public MainScreen()
     {
         //initialise main screen
-        setSize(700,500);
+        setSize(800,700);
         setLocation(450,200);
         AddWindowListenerToForm();
         setLayout(myLayout);
@@ -46,13 +46,13 @@ public class MainScreen extends JFrame implements ActionListener
     private void SetupButtons()
     {
         // set up all buttons
-        btnExit = UIComponentLibrary.CreateJButton("Exit",80,25,250,350,this,this,myLayout);
-        btnOpen = UIComponentLibrary.CreateJButton("Open",80,25,150,350,this,this,myLayout);
-        btnSave = UIComponentLibrary.CreateJButton("Save",80,25,50,350,this,this,myLayout);
-        btnBinary = UIComponentLibrary.CreateJButton("Search",120,25,25,400,this,this,myLayout);
-        btnClear = UIComponentLibrary.CreateJButton("Clear",80,25,350,350,this,this,myLayout);
-        btnSort = UIComponentLibrary.CreateJButton("Sort",80,25,450,350,this,this,myLayout);
-        btnRAF = UIComponentLibrary.CreateJButton("RAF",80,25,550,350,this,this,myLayout);
+        btnExit = UIComponentLibrary.CreateJButton("Exit",80,25,300,600,this,this,myLayout);
+        btnOpen = UIComponentLibrary.CreateJButton("Open",80,25,200,600,this,this,myLayout);
+        btnSave = UIComponentLibrary.CreateJButton("Save",80,25,100,600,this,this,myLayout);
+        btnBinary = UIComponentLibrary.CreateJButton("Search",120,25,225,50,this,this,myLayout);
+        btnClear = UIComponentLibrary.CreateJButton("Clear",80,25,400,600,this,this,myLayout);
+        btnSort = UIComponentLibrary.CreateJButton("Sort",80,25,500,600,this,this,myLayout);
+        btnRAF = UIComponentLibrary.CreateJButton("RAF",80,25,600,600,this,this,myLayout);
 
 
     }
@@ -63,11 +63,11 @@ public class MainScreen extends JFrame implements ActionListener
     private void SetupTextfields()
     {
         // set up all text fields
-        txtSearch = UIComponentLibrary.CreateAJTextField(10,150,405,this,myLayout);
-        txtTeacher = UIComponentLibrary.CreateAJTextField(10, 50, 10, this, myLayout);
-        txtClass = UIComponentLibrary.CreateAJTextField(10, 200, 10, this, myLayout);
-        txtRoom = UIComponentLibrary.CreateAJTextField(10, 350, 10, this, myLayout);
-        txtDate = UIComponentLibrary.CreateAJTextField(10, 500, 10, this, myLayout);
+        txtSearch = UIComponentLibrary.CreateAJTextField(10,100,50,this,myLayout);
+        txtTeacher = UIComponentLibrary.CreateAJTextField(10, 100, 10, this, myLayout);
+        txtClass = UIComponentLibrary.CreateAJTextField(10, 250, 10, this, myLayout);
+        txtRoom = UIComponentLibrary.CreateAJTextField(10, 400, 10, this, myLayout);
+        txtDate = UIComponentLibrary.CreateAJTextField(10, 550, 10, this, myLayout);
         txtTeacher.setOpaque(true);
         txtClass.setOpaque(true);
         txtRoom.setOpaque(true);
@@ -91,8 +91,8 @@ public class MainScreen extends JFrame implements ActionListener
             {
                 //Calculates X & y positions of current textfield
                 //Format used = spacingBetweenUnits * iteration + paddingFromEdge
-                int xPos = 60 * x + 70;
-                int yPos = 20 * y + 40;
+                int xPos = 60 * x + 90;
+                int yPos = 20 * y + 100;
                 textFields[y][x] = UIComponentLibrary.CreateAJTextField(5,xPos,yPos,this,myLayout);
 
                 //Add focusListener to trigger on focus loss
@@ -146,7 +146,7 @@ public class MainScreen extends JFrame implements ActionListener
             System.exit(0); // exit
         }
         if (actionEvent.getSource() == btnBinary) { // binary search
-
+            checkcolor();
             Student[] students = GetStudentDetails(); // create array
             new SearchForm(students, txtSearch.getText()); // new instance of search form
             showdisplay(); // highlight search on main form
@@ -240,7 +240,7 @@ public class MainScreen extends JFrame implements ActionListener
                 {
                     if (textFields[y][x].getText().isEmpty() == false) // if not empty
                     {
-                        bw.write(y + "," + x + "," + textFields[y][x].getText() + ","); // write ypos, xpos and text values
+                        bw.write(x + "," + y + "," + textFields[y][x].getText() + ","); // write ypos, xpos and text values
                         if (textFields[y][x].getBackground() == Color.CYAN) // if background is cyan write cyan
                         {
                             bw.write("CYAN");
@@ -281,8 +281,8 @@ public class MainScreen extends JFrame implements ActionListener
             while((line = br.readLine()) != null) // while line not empty
             {
                 String[] temp = line.split(","); // create temp array, split by comma
-                int yPos = Integer.parseInt(temp[0]); // add ypos
-                int xPOs = Integer.parseInt(temp[1]); // add xpos
+                int yPos = Integer.parseInt(temp[1]); // add ypos
+                int xPOs = Integer.parseInt(temp[0]); // add xpos
                 textFields[yPos][xPOs].setText(temp[2]); // add text
 
                 // convert function if background fill present. sets to current config of desk,cyan
@@ -408,22 +408,20 @@ public class MainScreen extends JFrame implements ActionListener
                 index = count * 150 ; // set index
                 raf.seek(index); // seek index
                 String name = raf.readUTF(); // read name
+
                 raf.seek(index + 50); // seek index
                 int yPos = raf.readInt(); // read posy
                 raf.seek(index + 75); // seek index
                 int xPos = raf.readInt(); // read posx
                 textFields[yPos][xPos].setText(name); // set textbox array to name
+
                 if (name.compareToIgnoreCase("Desk") == 0) // if value == desk
                 {
                     raf.seek(100); // seek
                     String color = raf.readUTF(); // set color var to line
-                    if (color.compareToIgnoreCase("Cyan") == 0) // if line == cyan
-                    {
-                        textFields[yPos][xPos].setBackground(Color.CYAN); // set background to cyan
-                    }
+                    textFields[yPos][xPos].setBackground(Color.CYAN); // set background to cyan
                 }
                 count++; // itterate
-
 
             }
 
@@ -481,11 +479,11 @@ public class MainScreen extends JFrame implements ActionListener
         {
             for (int x = 0; x < textFields[y].length; x++)
             {
-                if(textFields[x][y].getText().isEmpty() == false){
+                if(!textFields[x][y].getText().isEmpty()){
                     if (textFields[x][y].getText().equalsIgnoreCase(txtSearch.getText()))
                     {
-                   textFields[x][y].setBackground(Color.orange);
-                }
+                        textFields[x][y].setBackground(Color.orange);
+                    }
 
                 }
             }
@@ -504,7 +502,6 @@ public class MainScreen extends JFrame implements ActionListener
                 {
                     if (textFields[y][x].getBackground() == Color.orange)
                     {
-
                         textFields[y][x].setBackground(Color.white);
                     }
 
