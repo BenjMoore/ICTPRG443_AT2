@@ -590,10 +590,10 @@ public class MainScreen extends JFrame implements ActionListener {
             // Iterate through each column of text fields
             for (int x = 0; x < textFields[y].length; x++) {
                 // If the text field is not empty
-                if (!textFields[x][y].getText().isEmpty()) {
+                if (!textFields[y][x].getText().isEmpty()) {
                     // If the text matches the search text, highlight it in orange
-                    if (textFields[x][y].getText().equalsIgnoreCase(txtSearch.getText())) {
-                        textFields[x][y].setBackground(Color.orange);
+                    if (textFields[y][x].getText().equalsIgnoreCase(txtSearch.getText())) {
+                        textFields[y][x].setBackground(Color.orange);
                     }
                 }
             }
@@ -610,7 +610,7 @@ public class MainScreen extends JFrame implements ActionListener {
             // Iterate through each column of text fields
             for (int x = 0; x < textFields[y].length; x++) {
                 // If the text field is not empty
-                if (textFields[y][x].getText().isEmpty() == false) {
+                if (!textFields[y][x].getText().isEmpty()) {
                     // If the background color is orange, reset it to white
                     if (textFields[y][x].getBackground() == Color.orange) {
                         textFields[y][x].setBackground(Color.white);
@@ -619,6 +619,8 @@ public class MainScreen extends JFrame implements ActionListener {
             }
         }
     }
+
+
 }
 
 
