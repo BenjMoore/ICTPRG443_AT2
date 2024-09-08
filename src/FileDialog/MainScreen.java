@@ -33,7 +33,7 @@ public class MainScreen extends JFrame implements ActionListener {
      */
     public MainScreen() {
         // Set the size of the main window
-        setSize(800, 700);
+        setSize(800, 600);
         // Set the location of the main window on the screen
         setLocation(450, 200);
         // Add a window listener to handle the closing of the window
@@ -56,19 +56,19 @@ public class MainScreen extends JFrame implements ActionListener {
      */
     private void SetupButtons() {
         // Create and position the Exit button
-        btnExit = UIComponentLibrary.CreateJButton("Exit", 80, 25, 300, 600, this, this, myLayout);
+        btnExit = UIComponentLibrary.CreateJButton("Exit", 80, 25, 650, 500, this, this, myLayout);
         // Create and position the Open button
-        btnOpen = UIComponentLibrary.CreateJButton("Open", 80, 25, 200, 600, this, this, myLayout);
+        btnOpen = UIComponentLibrary.CreateJButton("CSV", 80, 25, 575, 500, this, this, myLayout);
         // Create and position the Save button
-        btnSave = UIComponentLibrary.CreateJButton("Save", 80, 25, 100, 600, this, this, myLayout);
+        btnSave = UIComponentLibrary.CreateJButton("Save", 80, 25, 125, 500, this, this, myLayout);
         // Create and position the Search button
-        btnBinary = UIComponentLibrary.CreateJButton("Search", 120, 25, 225, 50, this, this, myLayout);
+        btnBinary = UIComponentLibrary.CreateJButton("Search", 80, 25, 425, 500, this, this, myLayout);
         // Create and position the Clear button
-        btnClear = UIComponentLibrary.CreateJButton("Clear", 80, 25, 400, 600, this, this, myLayout);
+        btnClear = UIComponentLibrary.CreateJButton("Clear", 80, 25, 50, 500, this, this, myLayout);
         // Create and position the Sort button
-        btnSort = UIComponentLibrary.CreateJButton("Sort", 80, 25, 500, 600, this, this, myLayout);
+        btnSort = UIComponentLibrary.CreateJButton("Sort", 80, 25, 200, 500, this, this, myLayout);
         // Create and position the RAF button
-        btnRAF = UIComponentLibrary.CreateJButton("RAF", 80, 25, 600, 600, this, this, myLayout);
+        btnRAF = UIComponentLibrary.CreateJButton("RAF", 80, 25, 500, 500, this, this, myLayout);
     }
 
     /**
@@ -78,7 +78,7 @@ public class MainScreen extends JFrame implements ActionListener {
      */
     private void SetupTextfields() {
         // Create and position the search text field
-        txtSearch = UIComponentLibrary.CreateAJTextField(10, 100, 50, this, myLayout);
+        txtSearch = UIComponentLibrary.CreateAJTextField(10, 310, 504, this, myLayout);
         // Create and position the teacher text field
         txtTeacher = UIComponentLibrary.CreateAJTextField(10, 100, 10, this, myLayout);
         // Create and position the class text field

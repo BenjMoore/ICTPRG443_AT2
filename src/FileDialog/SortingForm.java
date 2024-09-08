@@ -29,7 +29,7 @@ public class SortingForm extends JFrame {
      */
     public SortingForm(Student[] array, String search) {
         // Set the size of the form based on the number of students
-        setSize(250, array.length * 15);
+        setSize(250, array.length * 10);
         // Set the location of the form on the screen
         setLocation(300, 50);
         // Set the layout manager for the form
